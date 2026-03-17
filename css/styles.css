@@ -416,14 +416,16 @@ main {
     line-height: 1.15;
     color: #ffffff;
     margin: 0 0 14px 0;
+    text-align: center;
 }
 
 .hero-content > p:not(.hero-subtitle) {
     font-size: 0.975rem;
     color: #cfcfcf;
-    margin: 0;
+    margin: 0 auto;
     line-height: 1.55;
     max-width: 580px;
+    text-align: center;
 }
 
 .hero-image {
