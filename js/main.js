@@ -5,36 +5,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // =====================================================
-    // LOADING ANIMATION
-    // =====================================================
-    const loadingScreen = document.querySelector('.loading-screen');
-    
-    if (loadingScreen) {
-        let loadingTimeoutId;
-
-        function hideLoadingScreen() {
-            if (loadingScreen.classList.contains('hidden')) {
-                return;
-            }
-
-            loadingScreen.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-            if (loadingTimeoutId) {
-                clearTimeout(loadingTimeoutId);
-            }
-        }
-
-        // Hide loading screen after animation
-        loadingTimeoutId = setTimeout(hideLoadingScreen, 1100);
-
-        // Allow users to skip the intro immediately.
-        loadingScreen.addEventListener('click', hideLoadingScreen);
-        
-        // Prevent scrolling during loading
-        document.body.style.overflow = 'hidden';
-    }
-    
-    // =====================================================
     // HEADER SCROLL EFFECT
     // =====================================================
     const header = document.querySelector('.header');
