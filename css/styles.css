@@ -368,7 +368,7 @@ main {
 .home-hero {
     min-height: 88vh;
     align-items: center;
-    padding: 10px 0 90px;
+    padding: 130px 0 80px;
 }
 
 .hero-layout {
@@ -387,13 +387,13 @@ main {
 
 .hero-title {
   font-family: var(--font-heading);
-  font-size: clamp(52px, 3vw, 56px);
+  font-size: clamp(32px, 4.2vw, 56px);
   font-weight: 500;
   letter-spacing: 1px;
-  line-height: 1.2;
+  line-height: 1.15;
   margin-bottom: 20px;
-  max-width: 100
-  00px;
+  color: #ffffff;
+  white-space: normal;
 }
 
 .hero-title span {
@@ -404,9 +404,8 @@ main {
     font-family: var(--font-subheading);
     font-size: 1.08rem;
     color: #cfcfcf;
-    max-width: 10
-    00px;
-    margin-top: 22px;
+    max-width: 600px;
+    margin: 22px auto 0;
     line-height: 1.65;
 }
 
@@ -905,8 +904,8 @@ main {
 }
 
 .contact-form-row {
-    display: grid;
-    grid-template-columns: 1fr 0.94fr;
+    display: flex;
+    flex-direction: row;
     gap: 60px;
     align-items: stretch;
 }
@@ -915,13 +914,18 @@ main {
     display: flex;
     flex-direction: column;
     gap: 25px;
-    margin-right: -56px;
+    flex: 1;
+    min-width: 0;
     position: relative;
     z-index: 2;
+    margin-right: 0;
 }
 
-.contact-form-section--light .contact-form-image-wrapper {
-    display: flex;
+.contact-form-image-wrapper {
+    flex: 0 0 42%;
+    max-width: 42%;
+    position: relative;
+    overflow: hidden;
 }
 
 .contact-form {
@@ -1006,8 +1010,10 @@ main {
 }
 
 .image-contact {
-    width: 90%;
-    margin-left: 40px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 /* =====================================================
@@ -1269,8 +1275,8 @@ main {
     }
 
     .hero-title {
-        font-size: clamp(20px, 2.45vw, 28px);
-        white-space: nowrap;
+        font-size: clamp(26px, 3.2vw, 38px);
+        white-space: normal;
     }
 
     .hero-layout {
@@ -1336,8 +1342,13 @@ main {
     }
 
     .home-hero {
-        min-height: auto;
-        padding: 110px 0 50px;
+        min-height: 100svh;
+        min-height: 100vh;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     }
 
     .about-section,
@@ -1383,16 +1394,19 @@ main {
     }
     
     .contact-form-row {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        flex-direction: column;
+        gap: 36px;
+    }
+
+    .contact-form-image-wrapper {
+        flex: 0 0 auto;
+        max-width: 100%;
+        width: 100%;
+        aspect-ratio: 4 / 3;
     }
 
     .contact-form-fields {
         margin-right: 0;
-    }
-    
-    .contact-form-section--light .contact-form-image-wrapper {
-        aspect-ratio: 4 / 3;
     }
 
     .contact-form-section--light .contact-form-image {
@@ -1462,8 +1476,9 @@ main {
     }
 
     .home-hero {
-        min-height: 76vh;
-        padding: 100px 20px 50px;
+        min-height: 100svh;
+        min-height: 100vh;
+        padding: 0 20px;
     }
 
     .about-section,
@@ -1483,17 +1498,19 @@ main {
     }
 
     .hero-content {
-        text-align: left;
+        text-align: center;
     }
 
     .hero-title {
-        font-size: clamp(16px, 4.2vw, 22px);
+        font-size: clamp(24px, 7.5vw, 32px);
         white-space: normal;
+        letter-spacing: 0.5px;
     }
 
     .hero-subtitle {
         max-width: 100%;
-        margin-top: 18px;
+        margin-top: 16px;
+        font-size: 0.97rem;
     }
 
     .hero-image {
