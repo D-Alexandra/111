@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Favicon - Simple "SS" monogram -->
+  <rect width="32" height="32" fill="#2d3a3a"/>
+  
+  <!-- S letter stylized -->
+  <text x="16" y="23" text-anchor="middle" font-family="'Playfair Display', serif" font-size="18" font-weight="600" fill="#c4a77d">
+    SS
+  </text>
+</svg>
