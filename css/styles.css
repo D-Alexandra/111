@@ -368,7 +368,7 @@ main {
 .home-hero {
     min-height: 88vh;
     align-items: center;
-    padding: 130px 0 80px;
+    padding: 10px 0 90px;
 }
 
 .hero-layout {
@@ -380,33 +380,34 @@ main {
 }
 
 .hero-content {
-    flex: 1;
-    max-width: 700px;
-    text-align: left;
+  max-width: 1200px;
+  margin: 0 auto;        /* toto ho vycentruje */
+  text-align: center;    /* text na stred */
 }
 
 .hero-title {
-    font-family: var(--font-heading);
-    font-size: clamp(41px, 5.2vw, 52px);
-    font-weight: 500;
-    line-height: 1.1;
-    color: #ffffff;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
+  font-family: var(--font-heading);
+  font-size: clamp(52px, 3vw, 56px);
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  max-width: 100
+  00px;
 }
 
 .hero-title span {
-    display: block;
+    display: inline;
 }
 
 .hero-subtitle {
     font-family: var(--font-subheading);
-    font-size: 0.92rem;
+    font-size: 1.08rem;
     color: #cfcfcf;
-    max-width: 450px;
-    margin-top: 20px;
-    line-height: 1.6;
+    max-width: 10
+    00px;
+    margin-top: 22px;
+    line-height: 1.65;
 }
 
 /* Sub-page section headings (no .hero-title class) */
@@ -1268,7 +1269,8 @@ main {
     }
 
     .hero-title {
-        font-size: clamp(31px, 4.4vw, 36px);
+        font-size: clamp(20px, 2.45vw, 28px);
+        white-space: nowrap;
     }
 
     .hero-layout {
@@ -1485,7 +1487,8 @@ main {
     }
 
     .hero-title {
-        font-size: clamp(26px, 6.5vw, 28px);
+        font-size: clamp(16px, 4.2vw, 22px);
+        white-space: normal;
     }
 
     .hero-subtitle {
