@@ -3,7 +3,28 @@
    ===================================================== */
 
 document.addEventListener('DOMContentLoaded', function() {
-    
+
+    // =====================================================
+    // INTRO / LOADING SCREEN
+    // =====================================================
+    const loadingScreen = document.getElementById('loadingScreen');
+
+    if (loadingScreen) {
+        document.body.style.overflow = 'hidden';
+
+        function hideIntro() {
+            if (loadingScreen.classList.contains('hidden')) return;
+            loadingScreen.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Auto-hide after 1 second (animation ~0.9s + brief hold)
+        setTimeout(hideIntro, 1500);
+
+        // Click anywhere to skip
+        loadingScreen.addEventListener('click', hideIntro);
+    }
+
     // =====================================================
     // HEADER SCROLL EFFECT
     // =====================================================
