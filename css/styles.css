@@ -926,6 +926,7 @@ main {
     max-width: 42%;
     position: relative;
     overflow: hidden;
+    min-height: 420px;
 }
 
 .contact-form {
@@ -1010,6 +1011,9 @@ main {
 }
 
 .image-contact {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -1228,7 +1232,7 @@ main {
     }
 
     .contact-form-fields {
-        margin-right: -40px;
+        margin-right: 0;
     }
 }
 
@@ -1290,7 +1294,7 @@ main {
     }
 
     .contact-form-fields {
-        margin-right: -24px;
+        margin-right: 0;
     }
     
     .footer-links {
@@ -1349,7 +1353,6 @@ main {
         align-items: center;
         justify-content: center;
     }
-    }
 
     .about-section,
     .services-page-section,
@@ -1402,6 +1405,7 @@ main {
         flex: 0 0 auto;
         max-width: 100%;
         width: 100%;
+        min-height: 0;
         aspect-ratio: 4 / 3;
     }
 
@@ -1414,6 +1418,9 @@ main {
     }
 
     .image-contact {
+        position: relative;
+        top: auto;
+        left: auto;
         width: 100%;
         margin-left: 0;
     }
