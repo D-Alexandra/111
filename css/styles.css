@@ -1730,6 +1730,21 @@ main {
         overflow-y: hidden;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-accent-gold) transparent;
+    }
+
+    .news-slider-wrapper::-webkit-scrollbar {
+        height: 3px;
+    }
+
+    .news-slider-wrapper::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .news-slider-wrapper::-webkit-scrollbar-thumb {
+        background-color: var(--color-accent-gold);
+        border-radius: 4px;
     }
 
     .news-slider {
