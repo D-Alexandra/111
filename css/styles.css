@@ -1731,7 +1731,7 @@ main {
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: thin;
-        scrollbar-color: var(--color-accent-gold) transparent;
+        scrollbar-color: rgba(78, 159, 212, 0.45) transparent;
     }
 
     .news-slider-wrapper::-webkit-scrollbar {
@@ -1743,8 +1743,8 @@ main {
     }
 
     .news-slider-wrapper::-webkit-scrollbar-thumb {
-        background-color: var(--color-accent-gold);
-        border-radius: 4px;
+        background-color: rgba(78, 159, 212, 0.45);
+        border-radius: 99px;
     }
 
     .news-slider {
