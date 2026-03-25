@@ -1724,24 +1724,32 @@ main {
         padding: 20px 14px;
     }
     
-    /* News Slider */
+    /* News Slider — horizontal swipe carousel (homepage only) */
     .news-slider-wrapper {
-        overflow: visible;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
     }
 
     .news-slider {
         display: flex;
-        flex-direction: column;
-        gap: 14px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 12px;
         transform: none !important;
-        cursor: default;
+        width: auto;
+        padding: 4px 16px 12px;
+        box-sizing: content-box;
     }
 
     .news-card {
-        flex: 0 0 auto;
+        flex: 0 0 80vw;
+        width: 80vw;
         min-width: 0;
-        width: 98%;
-        margin: 0 auto;
+        max-width: 80vw;
+        margin: 0;
+        scroll-snap-align: start;
     }
 
     .slider-controls {
