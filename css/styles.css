@@ -553,14 +553,14 @@ main {
     margin: 0 auto;
     padding-left: var(--container-padding);
     padding-right: var(--container-padding);
-    overflow: hidden;
 }
 
 .panorama-image {
-    width: 100%;
+    width: auto;
     height: auto;
+    max-width: 100%;
     display: block;
-    transform: translateY(-25%);
+    margin: 0 auto;
 }
 
 /* =====================================================
