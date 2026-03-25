@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.style.overflow = 'auto';
             }
         });
-        
+
         // Close menu when clicking on a link
         const navLinks = nav.querySelectorAll('.nav-link');
         navLinks.forEach(function(link) {
@@ -80,6 +80,40 @@ document.addEventListener('DOMContentLoaded', function() {
                 nav.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
+        });
+    }
+
+    // =====================================================
+    // MOBILE LANGUAGE DROPDOWN TOGGLE
+    // =====================================================
+    const langToggle = document.querySelector('.language-dropdown-toggle');
+    const langDropdown = document.querySelector('.language-dropdown');
+    const langMenu = document.querySelector('.language-dropdown-menu');
+
+    if (langToggle && langDropdown && langMenu) {
+        langToggle.addEventListener('click', function(e) {
+            // Only apply toggle behavior on mobile
+            if (window.innerWidth <= 768) {
+                e.stopPropagation();
+                const isOpen = langDropdown.classList.toggle('open');
+                langMenu.classList.toggle('open', isOpen);
+            }
+        });
+
+        // Update active language label on click
+        langMenu.querySelectorAll('.language-option').forEach(function(opt) {
+            opt.addEventListener('click', function(e) {
+                e.preventDefault();
+                const selected = this.textContent.trim().slice(0, 2);
+                langToggle.childNodes[0].textContent = selected + ' ';
+                langMenu.querySelectorAll('.language-option').forEach(o => o.classList.remove('active-lang'));
+                this.classList.add('active-lang');
+                // Close on mobile after selection
+                if (window.innerWidth <= 768) {
+                    langDropdown.classList.remove('open');
+                    langMenu.classList.remove('open');
+                }
+            });
         });
     }
     

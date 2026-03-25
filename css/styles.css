@@ -224,6 +224,79 @@ a:hover {
     display: flex;
     list-style: none;
     gap: 40px;
+    align-items: center;
+}
+
+.nav-item {
+    list-style: none;
+}
+
+/* Language Dropdown - Desktop */
+.language-dropdown {
+    position: relative;
+}
+
+.language-dropdown-toggle {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent-gold);
+    cursor: pointer;
+    padding: 5px 0;
+    transition: color var(--transition-fast);
+}
+
+.language-dropdown-toggle:hover {
+    color: var(--color-text-light);
+}
+
+.language-dropdown-toggle .lang-arrow {
+    font-size: 0.65rem;
+    display: inline-block;
+    transition: transform var(--transition-fast);
+    vertical-align: middle;
+}
+
+.language-dropdown:hover .lang-arrow {
+    transform: rotate(180deg);
+}
+
+.language-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background-color: rgba(20, 40, 65, 0.98);
+    border: 1px solid rgba(78, 159, 212, 0.2);
+    border-radius: 4px;
+    padding: 8px 0;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    min-width: 80px;
+    z-index: 1001;
+}
+
+.language-dropdown:hover .language-dropdown-menu {
+    display: flex;
+}
+
+.language-option {
+    font-family: var(--font-body);
+    font-size: 0.775rem;
+    padding: 7px 16px;
+    color: var(--color-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: all var(--transition-fast);
+    display: block;
+}
+
+.language-option:hover,
+.language-option.active-lang {
+    background-color: rgba(78, 159, 212, 0.15);
+    color: var(--color-accent-gold);
 }
 
 .nav-link {
@@ -272,6 +345,7 @@ a:hover {
     border: none;
     cursor: pointer;
     padding: 0;
+    z-index: 1001;
 }
 
 .menu-toggle span {
@@ -292,6 +366,40 @@ a:hover {
 
 .menu-toggle.active span:nth-child(3) {
     transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* On mobile, keep hamburger as hamburger (X handled by nav-close) */
+@media (max-width: 768px) {
+    .menu-toggle.active span:nth-child(1),
+    .menu-toggle.active span:nth-child(2),
+    .menu-toggle.active span:nth-child(3) {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+/* Mobile Menu Close Button */
+.nav-close {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-light);
+    z-index: 1002;
+    padding: 4px;
+    transition: color var(--transition-fast);
+}
+
+.nav-close:hover {
+    color: var(--color-accent-gold);
+}
+
+.nav-close svg {
+    width: 24px;
+    height: 24px;
 }
 
 /* =====================================================
@@ -1410,23 +1518,38 @@ main {
     }
 
     .home-hero {
+        background-image: none;
         background-size: clamp(620px, 140vw, 900px);
         background-position: center center;
     }
 
+    .home-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(28, 50, 73, 0.55);
+        z-index: 1;
+        pointer-events: none;
+    }
+
     .home-hero__content {
-        padding: calc(var(--header-height) + 40px) clamp(24px, 5vw, 60px) 56px;
+        padding: calc(var(--header-height) + 60px) clamp(24px, 5vw, 60px) 60px;
         max-width: 100%;
+        position: relative;
+        z-index: 2;
+        text-align: center;
     }
 
     .home-hero__title {
         font-size: clamp(18px, 4.5vw, 28px);
         margin-bottom: 24px;
+        text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
     }
 
     .home-hero__subtitle {
         font-size: 0.9rem;
         max-width: 420px;
+        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
     }
 
     .hero-logo img {
@@ -1453,13 +1576,22 @@ main {
         position: fixed;
         top: var(--header-height);
         left: 0;
-        right: 0;
+        width: 100%;
+        height: auto;
         background-color: var(--color-primary-dark);
-        padding: 30px var(--container-padding);
+        backdrop-filter: blur(8px);
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        border-bottom-left-radius: 24px;
+        border-bottom-right-radius: 24px;
         transform: translateY(-100%);
         opacity: 0;
         visibility: hidden;
-        transition: all var(--transition-medium);
+        transition: transform 0.4s ease, opacity 0.4s ease, visibility 0.4s ease;
+        padding: 28px var(--container-padding) 32px;
     }
     
     .nav.active {
@@ -1467,16 +1599,73 @@ main {
         opacity: 1;
         visibility: visible;
     }
+
+    .nav-close {
+        display: none !important;
+    }
     
     .nav-list {
         flex-direction: column;
         gap: 20px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .nav-item {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Language — always visible on mobile, no toggle */
+    .language-dropdown {
+        position: static;
+        margin-bottom: 4px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(78, 159, 212, 0.15);
+        width: 100%;
+        text-align: center;
+    }
+
+    .language-dropdown-toggle {
+        display: none;
+    }
+
+    .language-dropdown:hover .language-dropdown-menu {
+        display: flex;
+    }
+
+    .language-dropdown-menu {
+        position: static !important;
+        background-color: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0;
+        justify-content: center;
+        min-width: auto;
+    }
+
+    .language-option {
+        font-size: 0.72rem;
+        padding: 4px 10px;
+        background: none;
+        letter-spacing: 0.08em;
+    }
+
+    .language-option:hover,
+    .language-option.active-lang {
+        background: none;
+        color: var(--color-accent-gold);
     }
     
     .nav-link {
-        font-size: 1rem;
+        font-size: 1.1rem;
+        display: inline-block;
     }
-    
+
     .menu-toggle {
         display: flex;
     }
@@ -1658,6 +1847,25 @@ main {
 @media (max-width: 576px) {
     :root {
         --container-padding: 20px;
+    }
+
+    /* Panorama - zoomed, show ~2/3 width, impactful on phone */
+    .panorama-section {
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .panorama-wrapper {
+        padding-left: 0;
+        padding-right: 0;
+        overflow: hidden;
+    }
+
+    .panorama-image {
+        width: 150%;
+        max-width: none;
+        height: auto;
+        margin-left: -25%;
     }
 
     .home-hero {
