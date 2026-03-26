@@ -1782,6 +1782,12 @@ main {
         width: 98%;
         margin: 0 auto;
     }
+
+    /* Improve readability on mobile for About and single news article pages */
+    .about-content p,
+    .article-content p {
+        text-align: left;
+    }
     
     /* Contact */
     .contact-info-row {
