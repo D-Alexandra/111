@@ -334,48 +334,80 @@ document.addEventListener('DOMContentLoaded', function() {
     // =====================================================
     // FORM VALIDATION
     // =====================================================
-    const contactForm = document.querySelector('.contact-form');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+    const contactForms = document.querySelectorAll('.contact-form');
+
+    contactForms.forEach(function(contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            
-            // Get form fields
+
             const name = contactForm.querySelector('input[name="name"]');
             const email = contactForm.querySelector('input[name="email"]');
             const message = contactForm.querySelector('textarea[name="message"]');
-            
+            const submitButton = contactForm.querySelector('.btn-submit');
+            const submitLabel = getTranslation('common_form_submit', getCurrentLanguage());
+            const sendingLabel = getTranslation('common_form_submit_sending', getCurrentLanguage());
+
+            clearFormStatus(contactForm);
+
             let isValid = true;
-            
-            // Simple validation
+
             if (name && name.value.trim() === '') {
                 showError(name, getTranslation('common_form_error_name_required', getCurrentLanguage()));
                 isValid = false;
             } else if (name) {
                 clearError(name);
             }
-            
+
             if (email && !isValidEmail(email.value)) {
                 showError(email, getTranslation('common_form_error_email_invalid', getCurrentLanguage()));
                 isValid = false;
             } else if (email) {
                 clearError(email);
             }
-            
+
             if (message && message.value.trim() === '') {
                 showError(message, getTranslation('common_form_error_message_required', getCurrentLanguage()));
                 isValid = false;
             } else if (message) {
                 clearError(message);
             }
-            
-            if (isValid) {
-                // Show success message
-                showSuccessMessage();
+
+            if (!isValid) {
+                return;
+            }
+
+            if (!submitButton) {
+                return;
+            }
+
+            submitButton.disabled = true;
+            submitButton.textContent = sendingLabel || submitLabel;
+
+            try {
+                const endpoint = contactForm.dataset.formEndpoint || contactForm.getAttribute('action');
+                const formData = new FormData(contactForm);
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        Accept: 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Form submission failed');
+                }
+
+                showSuccessMessage(contactForm);
                 contactForm.reset();
+            } catch (error) {
+                showFormStatus(contactForm, 'error', getTranslation('common_form_error_submit', getCurrentLanguage()));
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = submitLabel;
             }
         });
-    }
+    });
     
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -403,8 +435,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         input.style.borderColor = '';
     }
+
+    function clearFormStatus(form) {
+        const existingStatus = form.querySelector('.form-status');
+        if (existingStatus) {
+            existingStatus.remove();
+        }
+    }
+
+    function showFormStatus(form, type, message) {
+        clearFormStatus(form);
+
+        const statusElement = document.createElement('div');
+        statusElement.className = `form-status form-status-${type}`;
+        statusElement.style.cssText = [
+            'margin-top: 20px',
+            'padding: 14px 18px',
+            'border: 1px solid ' + (type === 'error' ? '#e74c3c' : 'var(--color-accent-gold, #c4a77d)'),
+            'background-color: ' + (type === 'error' ? 'rgba(231, 76, 60, 0.08)' : 'rgba(196, 167, 125, 0.08)'),
+            'color: ' + (type === 'error' ? '#e74c3c' : 'var(--color-accent-gold, #c4a77d)'),
+            'font-size: 0.9rem'
+        ].join(';');
+        statusElement.textContent = message;
+
+        form.appendChild(statusElement);
+    }
     
-    function showSuccessMessage() {
+    function showSuccessMessage(form) {
         const successDiv = document.createElement('div');
         successDiv.className = 'form-success';
         successDiv.style.cssText = `
@@ -426,6 +483,10 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         
         document.body.appendChild(successDiv);
+
+        if (form) {
+            showFormStatus(form, 'success', getTranslation('common_form_success_body', getCurrentLanguage()));
+        }
         
         setTimeout(function() {
             successDiv.style.opacity = '0';
