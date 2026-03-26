@@ -1027,35 +1027,35 @@ main {
     padding-right: 0;
 }
 
-.contact-info-row {
+.contact-info {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
 
-.contact-info-left {
+.contact-left {
     text-align: left;
 }
 
-.contact-info-right {
+.contact-right {
     text-align: right;
 }
 
-.contact-info-left p,
-.contact-info-right p {
+.contact-left p,
+.contact-right p {
     font-size: 0.95rem;
     line-height: 1.8;
     margin-bottom: 0;
     color: var(--color-text-muted-dark);
 }
 
-.contact-info-left a,
-.contact-info-right a {
+.contact-left a,
+.contact-right a {
     color: var(--color-primary-dark);
 }
 
-.contact-info-left a:hover,
-.contact-info-right a:hover {
+.contact-left a:hover,
+.contact-right a:hover {
     color: var(--color-accent-gold);
 }
 
@@ -1790,15 +1790,23 @@ main {
     }
     
     /* Contact */
-    .contact-info-row {
-        flex-direction: column;
-        gap: 30px;
-        text-align: center;
+    .contact-info {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
     }
-    
-    .contact-info-left,
-    .contact-info-right {
-        text-align: center;
+
+    .contact-left,
+    .contact-right {
+        width: 48%;
+    }
+
+    .contact-left {
+        text-align: left;
+    }
+
+    .contact-right {
+        text-align: right;
     }
     
     .contact-form-wrapper {

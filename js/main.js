@@ -3,6 +3,104 @@
    ===================================================== */
 
 document.addEventListener('DOMContentLoaded', function() {
+    const supportedLanguages = ['sk', 'en', 'cz', 'ua'];
+    const translations = window.translations || {};
+
+    function getCurrentLanguage() {
+        const storedLanguage = (localStorage.getItem('lang') || 'sk').toLowerCase();
+        return supportedLanguages.includes(storedLanguage) ? storedLanguage : 'sk';
+    }
+
+    function getTranslation(key, lang) {
+        if (!key) return '';
+        if (translations[lang] && translations[lang][key]) {
+            return translations[lang][key];
+        }
+        if (translations.sk && translations.sk[key]) {
+            return translations.sk[key];
+        }
+        return '';
+    }
+
+    function updateLanguageControls(lang) {
+        const langToggle = document.querySelector('.language-dropdown-toggle');
+        const languageOptions = document.querySelectorAll('.language-option[data-lang]');
+
+        if (langToggle) {
+            langToggle.childNodes[0].textContent = lang.toUpperCase() + ' ';
+        }
+
+        languageOptions.forEach(function(option) {
+            option.classList.toggle('active-lang', option.dataset.lang === lang);
+        });
+    }
+
+    function translatePage() {
+        const lang = getCurrentLanguage();
+
+        document.documentElement.lang = lang;
+
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+            const key = el.getAttribute('data-i18n');
+            const value = getTranslation(key, lang);
+
+            if (!value) return;
+
+            if (el.hasAttribute('data-i18n-html')) {
+                el.innerHTML = value;
+            } else {
+                el.innerText = value;
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+            const key = el.getAttribute('data-i18n-placeholder');
+            const value = getTranslation(key, lang);
+            if (value) {
+                el.setAttribute('placeholder', value);
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-aria-label]').forEach(function(el) {
+            const key = el.getAttribute('data-i18n-aria-label');
+            const value = getTranslation(key, lang);
+            if (value) {
+                el.setAttribute('aria-label', value);
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-alt]').forEach(function(el) {
+            const key = el.getAttribute('data-i18n-alt');
+            const value = getTranslation(key, lang);
+            if (value) {
+                el.setAttribute('alt', value);
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-content]').forEach(function(el) {
+            const key = el.getAttribute('data-i18n-content');
+            const value = getTranslation(key, lang);
+            if (value) {
+                el.setAttribute('content', value);
+            }
+        });
+
+        updateLanguageControls(lang);
+    }
+
+    function setLanguage(lang) {
+        const normalizedLanguage = (lang || '').toLowerCase();
+
+        if (!supportedLanguages.includes(normalizedLanguage)) {
+            return;
+        }
+
+        localStorage.setItem('lang', normalizedLanguage);
+        translatePage();
+    }
+
+    window.translatePage = translatePage;
+    window.setLanguage = setLanguage;
 
     // =====================================================
     // INTRO / LOADING SCREEN
@@ -100,14 +198,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Update active language label on click
-        langMenu.querySelectorAll('.language-option').forEach(function(opt) {
+        langMenu.querySelectorAll('.language-option[data-lang]').forEach(function(opt) {
             opt.addEventListener('click', function(e) {
                 e.preventDefault();
-                const selected = this.textContent.trim().slice(0, 2);
-                langToggle.childNodes[0].textContent = selected + ' ';
-                langMenu.querySelectorAll('.language-option').forEach(o => o.classList.remove('active-lang'));
-                this.classList.add('active-lang');
+                setLanguage(this.dataset.lang);
                 // Close on mobile after selection
                 if (window.innerWidth <= 768) {
                     langDropdown.classList.remove('open');
@@ -250,21 +344,21 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Simple validation
             if (name && name.value.trim() === '') {
-                showError(name, 'Prosím, zadajte vaše meno');
+                showError(name, getTranslation('common_form_error_name_required', getCurrentLanguage()));
                 isValid = false;
             } else if (name) {
                 clearError(name);
             }
             
             if (email && !isValidEmail(email.value)) {
-                showError(email, 'Prosím, zadajte platný email');
+                showError(email, getTranslation('common_form_error_email_invalid', getCurrentLanguage()));
                 isValid = false;
             } else if (email) {
                 clearError(email);
             }
             
             if (message && message.value.trim() === '') {
-                showError(message, 'Prosím, napíšte vašu správu');
+                showError(message, getTranslation('common_form_error_message_required', getCurrentLanguage()));
                 isValid = false;
             } else if (message) {
                 clearError(message);
@@ -322,8 +416,8 @@ document.addEventListener('DOMContentLoaded', function() {
             animation: fadeIn 0.3s ease;
         `;
         successDiv.innerHTML = `
-            <p style="font-size: 1rem; margin-bottom: 10px;">Ďakujeme za vašu správu!</p>
-            <p style="font-size: 0.875rem; opacity: 0.8; margin-bottom: 0;">Budeme vás kontaktovať čo najskôr.</p>
+            <p style="font-size: 1rem; margin-bottom: 10px;">${getTranslation('common_form_success_title', getCurrentLanguage())}</p>
+            <p style="font-size: 0.875rem; opacity: 0.8; margin-bottom: 0;">${getTranslation('common_form_success_body', getCurrentLanguage())}</p>
         `;
         
         document.body.appendChild(successDiv);
@@ -371,6 +465,8 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.add('active');
         }
     });
+
+    translatePage();
     
 });
 
