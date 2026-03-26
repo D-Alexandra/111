@@ -81,6 +81,16 @@ body {
     overflow-x: hidden;
 }
 
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
 /* =====================================================
    INTRO / LOADING SCREEN
    ===================================================== */
@@ -259,7 +269,7 @@ a:hover {
     vertical-align: middle;
 }
 
-.language-dropdown:hover .lang-arrow {
+.language-dropdown.open .lang-arrow {
     transform: rotate(180deg);
 }
 
@@ -278,7 +288,7 @@ a:hover {
     z-index: 1001;
 }
 
-.language-dropdown:hover .language-dropdown-menu {
+.language-dropdown-menu.open {
     display: flex;
 }
 
@@ -509,15 +519,25 @@ main {
 .home-hero {
     min-height: 74vh;
     position: relative;
+    isolation: isolate;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
     overflow: hidden;
+}
+
+.home-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
     background-image: url('../images/krivky.svg');
     background-size: clamp(900px, 90vw, 1400px);
-    background-position: center center;
+    background-position: center calc(50% + 32px);
     background-repeat: no-repeat;
+    opacity: 0.82;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .home-hero__content {
@@ -528,8 +548,8 @@ main {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: calc(var(--header-height) + 60px) clamp(32px, 6vw, 120px) 70px;
-    max-width: 860px;
+    padding: calc(var(--header-height) + 78px) clamp(32px, 6vw, 120px) 88px;
+    max-width: 920px;
     width: 100%;
     margin: 0 auto;
     translate: 0 clamp(-10px, -2vw, -36px);
@@ -538,7 +558,7 @@ main {
 }
 
 .home-hero__title {
-    font-family: 'Didot', 'Playfair Display', 'Libre Baskerville', Georgia, serif;
+    font-family: var(--font-heading);
     font-size: clamp(22px, 3vw, 42px);
     font-weight: 400;
     letter-spacing: 0.12em;
@@ -557,6 +577,13 @@ main {
     color: rgba(255, 255, 255, 0.78);
     max-width: 480px;
     margin: 0;
+}
+
+html[lang="ua"] .home-hero__subtitle {
+    font-family: var(--font-heading);
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    font-weight: 400;
+    line-height: 1.8;
 }
 
 .hero-layout {
@@ -1473,8 +1500,11 @@ main {
     .home-hero {
         min-height: 74vh;
         padding: 0;
+    }
+
+    .home-hero::before {
         background-size: clamp(780px, 110vw, 1100px);
-        background-position: center center;
+        background-position: center calc(50% + 42px);
     }
 
     .home-hero__title {
@@ -1533,7 +1563,7 @@ main {
     }
 
     .home-hero__content {
-        padding: calc(var(--header-height) + 60px) clamp(24px, 5vw, 60px) 60px;
+        padding: calc(var(--header-height) + 68px) clamp(24px, 5vw, 60px) 64px;
         max-width: 100%;
         position: relative;
         z-index: 2;
@@ -1911,7 +1941,7 @@ main {
     }
 
     .home-hero__content {
-        padding: calc(var(--header-height) + 28px) 24px 48px;
+        padding: calc(var(--header-height) + 36px) 24px 52px;
         max-width: 100%;
     }
 

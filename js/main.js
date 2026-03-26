@@ -189,25 +189,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const langMenu = document.querySelector('.language-dropdown-menu');
 
     if (langToggle && langDropdown && langMenu) {
+        function closeLanguageDropdown() {
+            langDropdown.classList.remove('open');
+            langMenu.classList.remove('open');
+        }
+
         langToggle.addEventListener('click', function(e) {
-            // Only apply toggle behavior on mobile
-            if (window.innerWidth <= 768) {
-                e.stopPropagation();
-                const isOpen = langDropdown.classList.toggle('open');
-                langMenu.classList.toggle('open', isOpen);
-            }
+            e.stopPropagation();
+            const isOpen = langDropdown.classList.toggle('open');
+            langMenu.classList.toggle('open', isOpen);
         });
 
         langMenu.querySelectorAll('.language-option[data-lang]').forEach(function(opt) {
             opt.addEventListener('click', function(e) {
                 e.preventDefault();
+                e.stopPropagation();
                 setLanguage(this.dataset.lang);
-                // Close on mobile after selection
-                if (window.innerWidth <= 768) {
-                    langDropdown.classList.remove('open');
-                    langMenu.classList.remove('open');
-                }
+                closeLanguageDropdown();
             });
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!langDropdown.contains(e.target)) {
+                closeLanguageDropdown();
+            }
         });
     }
     

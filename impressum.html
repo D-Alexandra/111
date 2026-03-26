@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Impressum - právne informácie o advokátskej kancelárii Solid Side.">
+    <meta name="description" content="Impressum - právne informácie o advokátskej kancelárii Solid Side." data-i18n-content="impressum_meta_description">
     <meta name="keywords" content="impressum, právne informácie, advokát, Solid Side">
-    <title>Impressum | Solid Side</title>
+    <title data-i18n="impressum_title">Impressum | Solid Side</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +26,7 @@
                 <img src="images/logo2.svg" alt="Solid Side">
             </a>
             
-            <button class="menu-toggle" aria-label="Menu">
+            <button class="menu-toggle" aria-label="Menu" data-i18n-aria-label="common_menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -37,17 +37,16 @@
                     <li class="nav-item language-dropdown">
                         <span class="language-dropdown-toggle">SK <span class="lang-arrow">▾</span></span>
                         <div class="language-dropdown-menu">
-                            <a href="#" class="language-option active-lang">SK</a>
-                            <a href="#" class="language-option">EN</a>
-                            <a href="#" class="language-option">DE</a>
-                            <a href="#" class="language-option">CZ</a>
-                            <a href="#" class="language-option">UA</a>
+                            <a href="#" class="language-option active-lang" data-lang="sk">SK</a>
+                            <a href="#" class="language-option" data-lang="en">EN</a>
+                            <a href="#" class="language-option" data-lang="cz">CZ</a>
+                            <a href="#" class="language-option" data-lang="ua">UA</a>
                         </div>
                     </li>
-                    <li><a href="o-nas.html" class="nav-link">O nás</a></li>
-                    <li><a href="sluzby.html" class="nav-link">Služby</a></li>
-                    <li><a href="aktuality.html" class="nav-link">Aktuality</a></li>
-                    <li><a href="kontakt.html" class="nav-link">Kontakt</a></li>
+                    <li><a href="o-nas.html" class="nav-link" data-i18n="common_nav_about">O nás</a></li>
+                    <li><a href="sluzby.html" class="nav-link" data-i18n="common_nav_services">Služby</a></li>
+                    <li><a href="aktuality.html" class="nav-link" data-i18n="common_nav_news">Aktuality</a></li>
+                    <li><a href="kontakt.html" class="nav-link" data-i18n="common_nav_contact">Kontakt</a></li>
                 </ul>
             </nav>
         </div>
@@ -59,7 +58,7 @@
         <section class="hero section--dark" style="min-height: 40vh;">
             <div class="container">
                 <div class="hero-content">
-                    <h1>Impressum</h1>
+                    <h1 data-i18n="impressum_hero_title">Impressum</h1>
                 </div>
             </div>
         </section>
@@ -68,49 +67,29 @@
         <section class="impressum-section section--dark">
             <div class="container">
                 <div class="impressum-content">
-                    <h3>Obchodné údaje</h3>
+                    <h3 data-i18n="impressum_business_data_title">Obchodné údaje</h3>
+                    
+                    <p data-i18n="impressum_trade_name_html" data-i18n-html><strong>Obchodné meno:</strong><br>Solid Side s.r.o.</p>
+                    
+                    <p data-i18n="impressum_seat_html" data-i18n-html><strong>Sídlo:</strong><br>Piaristická<br>911 01 Trenčín<br>Slovenská republika</p>
+                    
+                    <p data-i18n="impressum_company_id_html" data-i18n-html><strong>IČO:</strong><br>[Doplniť IČO]</p>
+                    
+                    <p data-i18n="impressum_tax_id_html" data-i18n-html><strong>DIČ:</strong><br>[Doplniť DIČ]</p>
+                    
+                    <p data-i18n="impressum_vat_id_html" data-i18n-html><strong>IČ DPH:</strong><br>[Doplniť IČ DPH]</p>
+                    
+                    <p data-i18n="impressum_registration_html" data-i18n-html><strong>Registrácia:</strong><br>Spoločnosť je zapísaná v Obchodnom registri Okresného súdu [Doplniť], oddiel: [Doplniť], vložka č. [Doplniť]</p>
+                    
+                    <h3 data-i18n="impressum_contact_data_title">Kontaktné údaje</h3>
                     
                     <p>
-                        <strong>Obchodné meno:</strong><br>
-                        Solid Side s.r.o.
-                    </p>
-                    
-                    <p>
-                        <strong>Sídlo:</strong><br>
-                        Piaristická<br>
-                        911 01 Trenčín<br>
-                        Slovenská republika
-                    </p>
-                    
-                    <p>
-                        <strong>IČO:</strong><br>
-                        [Doplniť IČO]
-                    </p>
-                    
-                    <p>
-                        <strong>DIČ:</strong><br>
-                        [Doplniť DIČ]
-                    </p>
-                    
-                    <p>
-                        <strong>IČ DPH:</strong><br>
-                        [Doplniť IČ DPH]
-                    </p>
-                    
-                    <p>
-                        <strong>Registrácia:</strong><br>
-                        Spoločnosť je zapísaná v Obchodnom registri Okresného súdu [Doplniť], oddiel: [Doplniť], vložka č. [Doplniť]
-                    </p>
-                    
-                    <h3>Kontaktné údaje</h3>
-                    
-                    <p>
-                        <strong>Telefón:</strong><br>
+                        <span data-i18n="impressum_phone_label_html" data-i18n-html><strong>Telefón:</strong></span><br>
                         <a href="tel:+421902535183">+421 902 535 183</a>
                     </p>
                     
                     <p>
-                        <strong>E-mail:</strong><br>
+                        <span data-i18n="impressum_email_label_html" data-i18n-html><strong>E-mail:</strong></span><br>
                         <a href="mailto:info@solidside.sk">info@solidside.sk</a>
                     </p>
                     
@@ -132,10 +111,10 @@
                 </a>
                 
                 <div class="footer-links">
-                    <a href="impressum.html" class="footer-link">Impressum</a>
-                    <a href="https://policies.google.com/privacy?hl=sk" class="footer-link" target="_blank" rel="noopener noreferrer">Ochrana súkromia</a>
-                    <a href="https://policies.google.com/terms?hl=sk" class="footer-link" target="_blank" rel="noopener noreferrer">Zmluvné podmienky</a>
-                    <a href="#" class="footer-link">Spracovanie osobných údajov</a>
+                    <a href="impressum.html" class="footer-link" data-i18n="common_footer_impressum">Impressum</a>
+                    <a href="https://policies.google.com/privacy?hl=sk" class="footer-link" target="_blank" rel="noopener noreferrer" data-i18n="common_footer_privacy">Ochrana súkromia</a>
+                    <a href="https://policies.google.com/terms?hl=sk" class="footer-link" target="_blank" rel="noopener noreferrer" data-i18n="common_footer_terms">Zmluvné podmienky</a>
+                    <a href="#" class="footer-link" data-i18n="common_footer_processing">Spracovanie osobných údajov</a>
                 </div>
                 
                 <div class="footer-social">
@@ -153,12 +132,13 @@
             </div>
             
             <div class="footer-bottom">
-                <p class="footer-copyright">© 2026 Solid Side. Všetky práva vyhradené.</p>
+                <p class="footer-copyright" data-i18n="common_footer_copyright">© 2026 Solid Side. Všetky práva vyhradené.</p>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
+    <script src="js/translations.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
